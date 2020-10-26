@@ -6,13 +6,15 @@
 		</div>
 		<div class="navbar-block">
 			<a href="#">Лента новостей</a>
-			<a href="#">Мои посты</a>
+			<a href="{% url 'posts:list' %}">Мои посты</a>
 			<a href="#">Мои подписки</a>
 		</div>
 		<div class="navbar-block">
 			{% if user.is_authenticated %}
 				<p>Добро пожаловать ({{ user.username }}) !</p>		
-				<a href="{% url 'user:logout' %}">Выйти</a>
+				<form action="{% url 'user:logout' %}">
+					<button type="submit">Выйти</button>
+				</form>
 			{% else %}
 				<a href="{% url 'user:login' %}">Вход</a>
 			{% endif %}

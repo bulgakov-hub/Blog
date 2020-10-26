@@ -1,0 +1,13 @@
+
+{% extends 'user/main.html' %}
+
+{% block content %}
+  <h2>{{ name }}</h2>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="submit-row">
+      <button type="submit" class="btn">{{ name }}</button>
+    </div>
+  </form>
+{% endblock %}

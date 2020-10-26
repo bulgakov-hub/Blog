@@ -1,3 +1,6 @@
+button {
+	margin: 5px;
+}
 .container {
 	width: 80%;
 	margin: auto;
@@ -20,4 +23,18 @@
 }
 .navbar-block a {
 	margin-right: 20px;
+}
+
+.post {
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid grey;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.button_block {
+	display: flex;
+	flex-wrap: wrap;
 }

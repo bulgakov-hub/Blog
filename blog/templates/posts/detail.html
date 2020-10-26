@@ -1,0 +1,16 @@
+
+{% extends 'user/main.html' %}
+
+{% block content %}
+	<h2>Просмотр поста</h2>
+	<b>{{ post.title }}</b>
+	<p>{{ post.content }}</p>
+	<div class="button_block">
+		<form action="{% url 'posts:update' pk=post.pk %}">
+			<button type="submit">Изменить</button>
+		</form>
+		<form action="{% url 'posts:delete' pk=post.pk %}">
+			<button type="submit">Удалить</button>
+		</form>
+	</div>
+{% endblock %}

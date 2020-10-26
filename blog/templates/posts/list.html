@@ -1,0 +1,33 @@
+
+{% extends 'user/main.html' %}
+
+{% block content %}
+	<h2>Мои посты</h2>
+	<form action="{% url 'posts:create' %}">
+		<button type="submit">Создать пост</button>
+	</form>
+	{% if posts %}
+		{% for post in posts %}
+		<div class="post">
+			<div class="post_info">
+				<b>{{ post.title }}</b>
+				{{ post.date }}
+			</div>
+			<div class="button_block">
+				<form action="{% url 'posts:detail' pk=post.pk %}">
+					<button type="submit">Просмотр</button>
+				</form>
+				<form action="{% url 'posts:update' pk=post.pk %}">
+					<button type="submit">Изменить</button>
+				</form>
+				<form action="{% url 'posts:delete' pk=post.pk %}">
+					<button type="submit">Удалить</button>
+				</form>
+			</div>
+			
+		</div>
+		{% endfor %}
+	{% else %}
+		<p>У вас нет постов</p>
+	{% endif %}
+{% endblock %}
