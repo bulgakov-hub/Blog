@@ -2,11 +2,11 @@
 {% extends 'user/main.html' %}
 
 {% block content %}
-  <h2>Удалить пост</h2>
+  <h2>Отменить подписку</h2>
   <form action="" method="post">
     {% csrf_token %}
     <div class="submit-row">
-    	<p>Вы действительно хотите удалить пост? {{ post.title }}</p>
+    	<p>Вы действительно хотите отписаться от пользователя <b>{{ subscribers.user.username }}</b></p>
       <button type="submit" class="btn">Удалить</button>
     </div>
   </form>

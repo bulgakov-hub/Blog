@@ -7,7 +7,7 @@
 		<div class="navbar-block">
 			<a href="#">Лента новостей</a>
 			<a href="{% url 'posts:list' %}">Мои посты</a>
-			<a href="#">Мои подписки</a>
+			<a href="{% url 'subscribers:list' %}">Мои подписки</a>
 		</div>
 		<div class="navbar-block">
 			{% if user.is_authenticated %}

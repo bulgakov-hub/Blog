@@ -1,0 +1,34 @@
+
+{% extends 'user/main.html' %}
+
+{% block content %}
+	<h2>Мои подписки</h2>
+	{% if subscribers %}
+		{% for subscribe in subscribers %}
+		<div class="post">
+			<div class="post_info">
+				<b>{{ subscribe.user }}</b>
+				{{ subscribe.date }}
+			</div>
+			<div class="button_block">
+				<form action="{% url 'subscribers:delete' pk=subscribe.pk %}">
+					<button type="submit">Отписаться</button>
+				</form>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+		<p>Вы еще ни накого не подписаны</p>
+	{% endif %}
+	{% if user_blogs %}
+		<h4>Подпишитесь на блоги других пользователей</h4>
+		<div class="button_block">
+			{% for blog in user_blogs %}
+				<form action="{% url 'subscribers:create' pk=blog.id %}" method='post'>
+					{% csrf_token %}
+					<button type="submit">{{ blog.username }}</button>
+				</form>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}
