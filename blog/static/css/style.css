@@ -1,0 +1,23 @@
+.container {
+	width: 80%;
+	margin: auto;
+	height: auto;
+}
+.navbar-logo {
+	margin-right: 10px;
+}
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.navbar-block {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.navbar-block a {
+	margin-right: 20px;
+}

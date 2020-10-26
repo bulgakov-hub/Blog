@@ -1,0 +1,22 @@
+<!-- Меню -->
+<div class="container">
+	<div class="navbar">
+		<div class="navbar-logo">
+			<h1>Блог</h1>
+		</div>
+		<div class="navbar-block">
+			<a href="#">Лента новостей</a>
+			<a href="#">Мои посты</a>
+			<a href="#">Мои подписки</a>
+		</div>
+		<div class="navbar-block">
+			{% if user.is_authenticated %}
+				<p>Добро пожаловать ({{ user.username }}) !</p>		
+				<a href="{% url 'user:logout' %}">Выйти</a>
+			{% else %}
+				<a href="{% url 'user:login' %}">Вход</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+<!-- Меню -->
