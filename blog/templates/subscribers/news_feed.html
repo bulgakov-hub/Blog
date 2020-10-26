@@ -1,0 +1,23 @@
+{% extends 'user/main.html' %}
+
+{% block content %}
+	<h2>Новостная лента</h2>
+	{% if news_feed %}
+		{% for post in news_feed %}
+		<div class="post">
+			<div class="post_info">
+				<b>{{ post.title }}</b>
+				{{ post.author }}
+			</div>
+			<div class="button_block">
+				{{ post.date }}
+				<form action="{% url 'posts:detail' pk=post.pk %}">
+					<button type="submit">Просмотр</button>
+				</form>
+			</div>
+		</div>
+		{% endfor %}
+	{% else %}
+		<p>Новых постов еще нет</p>
+	{% endif %}
+{% endblock %}

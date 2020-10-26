@@ -19,6 +19,7 @@ from .views import (
 	SubscribersListView,
     SubscribersCreateView,
     SubscribersDeleteView,
+    NewsFeedView,
 	)
 
 
@@ -28,4 +29,5 @@ urlpatterns = [
     path('list/', SubscribersListView.as_view(), name='list'),
     path('create/<int:pk>', SubscribersCreateView.as_view(), name='create'),
     path('delete/<int:pk>', SubscribersDeleteView.as_view(), name='delete'),
+    path('news-feed/', NewsFeedView.as_view(), name='news')
 ]

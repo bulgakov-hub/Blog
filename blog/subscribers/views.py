@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, TemplateView
 from django.views.generic.edit import DeleteView
 from .models import Subscribers
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from posts.models import Post
 
 
 class SubscribersListView(LoginRequiredMixin, ListView):
@@ -46,3 +46,24 @@ class SubscribersDeleteView(LoginRequiredMixin, DeleteView):
 	model = Subscribers
 	template_name = 'subscribers/delete.html'
 	success_url = reverse_lazy('subscribers:list')
+
+	def get_queryset(self):
+		qs = super().get_queryset()
+		return qs.filter(subscriber=self.request.user)
+
+
+class NewsFeedView(LoginRequiredMixin, TemplateView):
+	"""Новостная лента"""
+
+	template_name = 'subscribers/news_feed.html'
+
+	def get_context_data(self):
+		context = super().get_context_data()
+		post = Post.objects.exclude(author=self.request.user)
+		subscriber_ids = self.request.user.signer.values_list('user_id', flat=True)
+		if subscriber_ids:
+			post = post.filter(author_id__in=subscriber_ids)
+		post = post[:20]
+		context['news_feed'] = post
+
+		return context

@@ -58,6 +58,10 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 	template_name = 'posts/delete.html'
 	success_url = reverse_lazy('posts:list')
 
+	def get_queryset(self):
+		qs = super().get_queryset()
+		return qs.filter(author=self.request.user)
+
 
 class PostDetailView(DetailView):
 	"""Просмотр поста пользователя"""
