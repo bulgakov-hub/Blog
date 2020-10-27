@@ -7,7 +7,10 @@
 		<div class="post">
 			<div class="post_info">
 				<b>{{ post.title }}</b>
-				{{ post.author }}
+				Автор: {{ post.author }}
+				{% if post.users_read.count %}
+					<span>(Пост прочитали {{ post.users_read.count }} пользователя)</span>
+				{% endif %}
 			</div>
 			<div class="button_block">
 				{{ post.date }}

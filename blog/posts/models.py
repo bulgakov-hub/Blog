@@ -9,6 +9,7 @@ class Post(models.Model):
 	title = models.CharField('Заголовок', max_length=150)
 	content = models.TextField('Текст', max_length=10000)
 	date = models.DateTimeField('Дата публикации', auto_now_add=True)
+	users_read = models.ManyToManyField(User, related_name='post_read', blank=True)
 
 	def __str__(self):
 		return self.title

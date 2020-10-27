@@ -13,6 +13,9 @@
 				<b>{{ post.title }}</b>
 				{{ post.date }}
 			</div>
+			{% if post.users_read.count %}
+				<p>(Пост прочитали {{ post.users_read.count }} пользователя)</p>
+			{% endif %}
 			<div class="button_block">
 				<form action="{% url 'posts:detail' pk=post.pk %}">
 					<button type="submit">Просмотр</button>

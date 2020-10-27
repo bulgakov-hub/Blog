@@ -20,7 +20,8 @@ from .views import (
 	PostCreateView,
 	PostUpdateView,
 	PostDeleteView,
-	PostDetailView
+	PostDetailView,
+	ReadPostView
 	)
 
 
@@ -32,4 +33,5 @@ urlpatterns = [
     path('update/<int:pk>', PostUpdateView.as_view(), name='update'),
     path('delete/<int:pk>', PostDeleteView.as_view(), name='delete'),
     path('detail/<int:pk>', PostDetailView.as_view(), name='detail'),
+    path('read-post/<int:pk>', ReadPostView.as_view(), name='read'),
 ]

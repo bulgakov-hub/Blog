@@ -5,12 +5,23 @@
 	<h2>Просмотр поста</h2>
 	<b>{{ post.title }}</b>
 	<p>{{ post.content }}</p>
-	<div class="button_block">
-		<form action="{% url 'posts:update' pk=post.pk %}">
-			<button type="submit">Изменить</button>
+	{% if request.user.id == post.author.id %}
+		<div class="button_block">
+			<form action="{% url 'posts:update' pk=post.pk %}">
+				<button type="submit">Изменить</button>
+			</form>
+			<form action="{% url 'posts:delete' pk=post.pk %}">
+				<button type="submit">Удалить</button>
+			</form>
+		</div>
+	{% else %}
+		<form action="{% url 'posts:read' pk=post.pk %}" method="post">
+			{% csrf_token %}
+			{% if request.user in post.users_read.all %}
+				<p>Пост вами прочитан<span><button type="submit">Отменить?</button></span></p>
+			{% else %}
+				<button type="submit">Я прочитал пост</button>
+			{% endif %}
 		</form>
-		<form action="{% url 'posts:delete' pk=post.pk %}">
-			<button type="submit">Удалить</button>
-		</form>
-	</div>
+	{% endif %}
 {% endblock %}
