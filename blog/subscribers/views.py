@@ -14,8 +14,7 @@ class SubscribersListView(LoginRequiredMixin, ListView):
 	model = Subscribers
 	template_name = 'subscribers/list.html'
 	context_object_name = 'subscribers'
-	paginate_by = 10
-
+	
 	def get_queryset(self):
 		qs = super().get_queryset()
 		return qs.filter(subscriber=self.request.user)

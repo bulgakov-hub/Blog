@@ -13,8 +13,7 @@ class PostListView(LoginRequiredMixin, ListView):
 	model = Post
 	template_name = 'posts/list.html'
 	context_object_name = 'posts'
-	paginate_by = 10
-
+	
 	def get_queryset(self):
 		qs = super().get_queryset()
 		return qs.filter(author=self.request.user)

@@ -6,10 +6,10 @@
 		{% for post in news_feed %}
 		<div class="post">
 			<div class="post_info">
-				<b>{{ post.title }}</b>
+				Название: <b>{{ post.title }}</b>
 				Автор: {{ post.author }}
 				{% if post.users_read.count %}
-					<span>(Пост прочитали {{ post.users_read.count }} пользователя)</span>
+					<span>(всего читали: {{ post.users_read.count }})</span>
 				{% endif %}
 			</div>
 			<div class="button_block">
