@@ -25,7 +25,7 @@ SECRET_KEY = 'xng%)oi3)#&6f4z9jh_cy0$8b_w)j4#m=!#ole$=$g=*t@z5ou'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 ADMIN_SITE_HEADER = 'Адиминистратор проекта - "БЛОГ"'
 # Application definition
