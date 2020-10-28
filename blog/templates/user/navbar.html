@@ -8,9 +8,11 @@
 			{% if user.is_superuser or user.is_staff %}
 			<a href="{% url 'admin:index' %}">Администрирование</a>
 			{% endif %}
+			{% if user.is_authenticated %}
 			<a href="{% url 'subscribers:news' %}">Лента новостей</a>
 			<a href="{% url 'posts:list' %}">Мои посты</a>
 			<a href="{% url 'subscribers:list' %}">Мои подписки</a>
+			{% endif %}
 		</div>
 		<div class="navbar-block">
 			{% if user.is_authenticated %}
