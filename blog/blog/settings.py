@@ -128,10 +128,19 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = 'user:login'
 
 # Настройки почты
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'testingdjango2@gmail.com'
+# EMAIL_HOST_PASSWORD = 'bugagashechka'
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# Настройки почты
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yandex.ru'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'testloginovich@yandex.ru'
-EMAIL_HOST_PASSWORD = 'yjdsqgfhjkm'
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = "testodelov@mail.ru"
+EMAIL_HOST_PASSWORD = "bugagashechka"
+EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
