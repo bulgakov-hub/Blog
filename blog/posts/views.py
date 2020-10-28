@@ -8,78 +8,78 @@ from .models import Post
 
 
 class PostListView(LoginRequiredMixin, ListView):
-	"""Просмотр постов пользователей"""
+    """Просмотр постов пользователей"""
 
-	model = Post
-	template_name = 'posts/list.html'
-	context_object_name = 'posts'
-	
-	def get_queryset(self):
-		qs = super().get_queryset()
-		return qs.filter(author=self.request.user)
+    model = Post
+    template_name = 'posts/list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(author=self.request.user)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
-	"""Создание поста пользователя"""
+    """Создание поста пользователя"""
 
-	model = Post
-	template_name = 'posts/modify.html'
-	fields = ['title', 'content']
-	success_url = reverse_lazy('posts:list')
+    model = Post
+    template_name = 'posts/modify.html'
+    fields = ['title', 'content']
+    success_url = reverse_lazy('posts:list')
 
-	def get_context_data(self):
-		context = super().get_context_data()
-		context['name'] = 'Создать пост'
-		return context
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['name'] = 'Создать пост'
+        return context
 
-	def form_valid(self, form):
-		form.instance.author = self.request.user
-		return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
-	"""Изменить пост пользователя"""
+    """Изменить пост пользователя"""
 
-	model = Post
-	template_name = 'posts/modify.html'
-	fields = ['title', 'content']
-	success_url = reverse_lazy('posts:list')
+    model = Post
+    template_name = 'posts/modify.html'
+    fields = ['title', 'content']
+    success_url = reverse_lazy('posts:list')
 
-	def get_context_data(self):
-		context = super().get_context_data()
-		context['name'] = 'Изменить пост'
-		return context
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['name'] = 'Изменить пост'
+        return context
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):
-	"""Удалить пост пользователя"""
+    """Удалить пост пользователя"""
 
-	model = Post
-	template_name = 'posts/delete.html'
-	success_url = reverse_lazy('posts:list')
+    model = Post
+    template_name = 'posts/delete.html'
+    success_url = reverse_lazy('posts:list')
 
-	def get_queryset(self):
-		qs = super().get_queryset()
-		return qs.filter(author=self.request.user)
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(author=self.request.user)
 
 
 class PostDetailView(DetailView):
-	"""Просмотр поста пользователя"""
+    """Просмотр поста пользователя"""
 
-	model = Post
-	template_name = 'posts/detail.html'
+    model = Post
+    template_name = 'posts/detail.html'
 
 
 class ReadPostView(LoginRequiredMixin, View):
-	"""Отметка о прочтении поста"""
+    """Отметка о прочтении поста"""
 
-	def post(self, request, pk):
-		post = get_object_or_404(Post, id=pk)
-		users_read_ids = post.users_read.values_list('id', flat=True)
+    def post(self, request, pk):
+        post = get_object_or_404(Post, id=pk)
+        users_read_ids = post.users_read.values_list('id', flat=True)
 
-		if request.user.id in users_read_ids:
-			post.users_read.remove(request.user)
-		else:
-			post.users_read.add(request.user)
+        if request.user.id in users_read_ids:
+            post.users_read.remove(request.user)
+        else:
+            post.users_read.add(request.user)
 
-		return redirect('posts:detail', pk=pk)
+        return redirect('posts:detail', pk=pk)
