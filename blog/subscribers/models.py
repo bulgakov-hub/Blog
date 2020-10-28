@@ -11,15 +11,17 @@ from django.conf import settings
 class Subscribers(models.Model):
 	"""Подписчики пользователя"""
 
-	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
-	subscriber = models.ForeignKey(User, on_delete=models.CASCADE, related_name='signer')
+	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author', verbose_name='Автор')
+	subscriber = models.ForeignKey(User, on_delete=models.CASCADE, related_name='signer', verbose_name='Подписчик')
 	date = models.DateTimeField('Дата подписки', auto_now_add=True)
 
 	class Meta:
 		ordering = ['-date']
+		verbose_name = 'Подписчик'
+		verbose_name_plural = 'Подписчики'
 
 	def __str__(self):
-		return '{} подписан {}'.format(self.user, self.subscriber)
+		return '{} подписан на {}'.format(self.subscriber, self.user)
 
 
 # Перед удалением подписки удаляем наши отметки о прочтенных постах
