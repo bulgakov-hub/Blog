@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import Http404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView
@@ -44,6 +45,12 @@ class PostUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'posts/modify.html'
     fields = ['title', 'content']
     success_url = reverse_lazy('posts:list')
+
+    def get_object(self):
+        obj = super().get_object()
+        if not obj.author == self.request.user:
+            raise Http404
+        return obj
 
     def get_context_data(self):
         context = super().get_context_data()
