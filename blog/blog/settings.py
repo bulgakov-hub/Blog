@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-ADMIN_SITE_HEADER = 'Адиминистратор проекта - "БЛОГ"'
+ADMIN_SITE_HEADER = 'Администратор проекта - "БЛОГ"'
 # Application definition
 
 INSTALLED_APPS = [
