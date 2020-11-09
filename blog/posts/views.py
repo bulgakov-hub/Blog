@@ -81,7 +81,7 @@ class ReadPostView(LoginRequiredMixin, View):
     """Отметка о прочтении поста"""
 
     def post(self, request, pk):
-        post = get_object_or_404(Post, id=pk)
+        post = get_object_or_404(Post.objects.prefetch_related('users_read'), id=pk)
         users_read_ids = post.users_read.values_list('id', flat=True)
 
         if request.user.id in users_read_ids:
